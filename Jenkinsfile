@@ -31,14 +31,14 @@ pipeline {
         }
         
         
-        stage('Test') {
+        stage('code build') {
             steps {
-                echo 'Testing..'
+                sh 'mvn clean package'
             }
         }
-        stage('Deploy') {
+        stage('image build') {
             steps {
-                echo 'Deploying....'
+                sh "docker build -t bohyunchoi/spring:1.0 ."
             }
         }
     }
